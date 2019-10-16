@@ -12,7 +12,6 @@ export default class Note extends React.Component {
 
      <Text style={styles.noteText}>{this.props.val.date}</Text>
      <Text style={styles.noteText}>{this.props.val.note}</Text>
-      <Text style={styles.noteText}>COnstanin</Text>
 
      <TouchableOpacity onPress={this.props.deleteMethod} style={styles.noteDelete}>
       <Text style={styles.noteDeleteText}>D</Text>
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
 
       borderLeftWidth: 10,
 
-      borderLeftColor: '#e91e63',
+      borderLeftColor: 'orange',
 
   },
 

@@ -22,7 +22,7 @@ export default class Main extends React.Component {
     console.log("note", this.state.noteText)
 
     if(this.state.noteText){
-      alert('test');
+      alert(this.state.noteText);
 
 
       var d = new Date();
@@ -33,15 +33,16 @@ export default class Main extends React.Component {
         'note': this.state.noteText
       });
       this.setState({ noteArray:this.state.noteArray })
-      this.setState({ noteText: ''});
+      this.setState({noteText: ''})
+       console.log("note AFTER- ", this.state.noteText)
     }
+    console.log("note more AFTER- ", this.state.noteText, )
   }
 
   deleteNote(key) {
     this.state.noteArray.splice(key, 1);
     this.setState({noteArray:this.state.noteArray})
   }
-
 
 
   render(){
@@ -63,18 +64,14 @@ export default class Main extends React.Component {
 
     <View style={styles.footer}>
 
-
       <TextInput
-    placeholder=">note"
-    onChangeText={TextInputValue => this.setState({ noteText: TextInputValue }) }
+        placeholder=">note"
+        onChangeText={(noteText) => this.setState({noteText }) }
+        value={this.state.noteText}
         style={styles.textInput}  
-     placeholderTextColor='white'
-    underlineColorAndroid='transparent'  
-          />
-
-
-
-
+        placeholderTextColor='white'
+        underlineColorAndroid='transparent'  
+      />
 
     </View>
 
