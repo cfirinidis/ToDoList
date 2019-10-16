@@ -18,6 +18,32 @@ export default class Main extends React.Component {
     }
   }
 
+  addNote(){
+    console.log("note", this.state.noteText)
+
+    if(this.state.noteText){
+      alert('test');
+
+
+      var d = new Date();
+      this.state.noteArray.push({
+        'date':d.getFullYear()+
+        "/" + (d.getMonth()+1) +
+        "/" + (d.getDate()),
+        'note': this.state.noteText
+      });
+      this.setState({ noteArray:this.state.noteArray })
+      this.setState({ noteText: ''});
+    }
+  }
+
+  deleteNote(key) {
+    this.state.noteArray.splice(key, 1);
+    this.setState({noteArray:this.state.noteArray})
+  }
+
+
+
   render(){
       let notes =  this.state.noteArray.map((val, key)=>{
         return <Note key={key} keyval={key} val={val}
@@ -37,51 +63,28 @@ export default class Main extends React.Component {
 
     <View style={styles.footer}>
 
-    <TextInput
-    style={styles.textInput}
-    OnChangeText={(noteText)=>this.setState({noteText})}
-    value={this.state.noteText}
-    // placeholder='>note'
-    placehlderTextColor='white'
-    underlineColorAndroid='transparent'>
 
-    </TextInput>
+      <TextInput
+    placeholder=">note"
+    onChangeText={TextInputValue => this.setState({ noteText: TextInputValue }) }
+        style={styles.textInput}  
+     placeholderTextColor='white'
+    underlineColorAndroid='transparent'  
+          />
+
 
 
 
 
     </View>
 
-    <TouchableOpacity  onPress={this.addNote.bind(this) } style={styles.addButton}>
+    <TouchableOpacity  onPress={this.addNote.bind(this)} style={styles.addButton}>
       <Text style={styles.addButtonText}>+</Text>
     </TouchableOpacity>
 
     </View>
   );
 }
-
-  addNote(){
-          console.log("ggggg")
-      alert('test');
-    if(this.state.noteText){
-
-
-      var d = new Date();
-      this.state.noteArray.push({
-        'date':d.getFullYear()+
-        "/" + (d.getMonth()+1) +
-        "/" + (d.getDate()),
-        'note': this.state.noteText
-      });
-      this.setState({ noteArray:this.state.noteArray })
-      // this.setState({ noteText: ''});
-    }
-  }
-
-  deleteNote(key) {
-    this.state.noteArray.splice(key, 1);
-    this.setState({noteArray:this.state.noteArray})
-  }
 
 }
 
